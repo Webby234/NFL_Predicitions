@@ -14,19 +14,31 @@ Confidence scoring for each prediction
 
 Users can interactively select a week and filter predictions by confidence level.
 
+
+
 ⚙️ Installation
+
 1. Clone the repository
    
-git clone https://github.com/Webby234/NFL_Predicitions.git
+git clone https://github.com/Webby234/NFL_Predictions
 
-2. Install dependencies
+2. Install Python 3.11 and pip
+
+https://www.python.org/downloads/release/python-3110/
+pip Documentation: https://pip.pypa.io/en/stable/installation/
+
+3. Install dependencies
 
 pip install streamlit xgboost pandas scikit-learn nfl_data_py
+
+
 
 🚀 Running the App
 
 streamlit run model.py
 This will launch the dashboard in your browser. You can select a week and adjust the confidence threshold to view predictions.
+
+
 
 📊 Features
 Predicts winners for upcoming 2025 NFL games
@@ -36,6 +48,8 @@ Uses weighted team stats from 2022–2024
 Interactive week selector and confidence slider
 
 Displays recommended moneyline pick and model confidence
+
+
 
 🧠 Model Details
 Algorithm: XGBoost Classifier
@@ -55,6 +69,8 @@ Spread line
 Yardage differential
 
 Turnover differential
+
+
 
 🌐 Deployment
 To deploy this app publicly, you can use:
