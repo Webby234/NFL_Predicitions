@@ -16,22 +16,15 @@ Users can interactively select a week and filter predictions by confidence level
 
 ⚙️ Installation
 1. Clone the repository
-bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO.git
-cd YOUR-REPO
-2. Create a virtual environment (optional but recommended)
-bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-3. Install dependencies
-bash
-pip install -r requirements.txt
-If you don’t have a requirements.txt, use:
+   
+git clone https://github.com/Webby234/NFL_Predicitions.git
 
-bash
+2. Install dependencies
+
 pip install streamlit xgboost pandas scikit-learn nfl_data_py
+
 🚀 Running the App
-bash
+
 streamlit run model.py
 This will launch the dashboard in your browser. You can select a week and adjust the confidence threshold to view predictions.
 
