@@ -4,6 +4,41 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier, XGBRegressor
 import streamlit as st
 
+logo_urls = {
+        'ARI': 'https://a.espncdn.com/i/teamlogos/nfl/500/ari.png',
+        'ATL': 'https://a.espncdn.com/i/teamlogos/nfl/500/atl.png',
+        'BAL': 'https://a.espncdn.com/i/teamlogos/nfl/500/bal.png',
+        'BUF': 'https://a.espncdn.com/i/teamlogos/nfl/500/buf.png',
+        'CAR': 'https://a.espncdn.com/i/teamlogos/nfl/500/car.png',
+        'CHI': 'https://a.espncdn.com/i/teamlogos/nfl/500/chi.png',
+        'CIN': 'https://a.espncdn.com/i/teamlogos/nfl/500/cin.png',
+        'CLE': 'https://a.espncdn.com/i/teamlogos/nfl/500/cle.png',
+        'DAL': 'https://a.espncdn.com/i/teamlogos/nfl/500/dal.png',
+        'DEN': 'https://a.espncdn.com/i/teamlogos/nfl/500/den.png',
+        'DET': 'https://a.espncdn.com/i/teamlogos/nfl/500/det.png',
+        'GB':  'https://a.espncdn.com/i/teamlogos/nfl/500/gb.png',
+        'HOU': 'https://a.espncdn.com/i/teamlogos/nfl/500/hou.png',
+        'IND': 'https://a.espncdn.com/i/teamlogos/nfl/500/ind.png',
+        'JAX': 'https://a.espncdn.com/i/teamlogos/nfl/500/jax.png',
+        'KC':  'https://a.espncdn.com/i/teamlogos/nfl/500/kc.png',
+        'LV':  'https://a.espncdn.com/i/teamlogos/nfl/500/lv.png',
+        'LAC': 'https://a.espncdn.com/i/teamlogos/nfl/500/lac.png',
+        'LA': 'https://a.espncdn.com/i/teamlogos/nfl/500/lar.png',
+        'MIA': 'https://a.espncdn.com/i/teamlogos/nfl/500/mia.png',
+        'MIN': 'https://a.espncdn.com/i/teamlogos/nfl/500/min.png',
+        'NE':  'https://a.espncdn.com/i/teamlogos/nfl/500/ne.png',
+        'NO':  'https://a.espncdn.com/i/teamlogos/nfl/500/no.png',
+        'NYG': 'https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png',
+        'NYJ': 'https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png',
+        'PHI': 'https://a.espncdn.com/i/teamlogos/nfl/500/phi.png',
+        'PIT': 'https://a.espncdn.com/i/teamlogos/nfl/500/pit.png',
+        'SEA': 'https://a.espncdn.com/i/teamlogos/nfl/500/sea.png',
+        'SF':  'https://a.espncdn.com/i/teamlogos/nfl/500/sf.png',
+        'TB':  'https://a.espncdn.com/i/teamlogos/nfl/500/tb.png',
+        'TEN': 'https://a.espncdn.com/i/teamlogos/nfl/500/ten.png',
+        'WAS': 'https://a.espncdn.com/i/teamlogos/nfl/500/was.png'
+    }
+
 # Load schedule and weekly stats
 schedule = nfl.import_schedules(years=list(range(2020, 2025)))
 weekly = nfl.import_weekly_data(years=list(range(2022, 2025)))
@@ -106,42 +141,6 @@ tab1, tab2 = st.tabs(["💰 Moneyline Predictor", "📈 WR Prop Predictor"])
 with tab1:
     st.write("Predict winners for upcoming 2025 NFL matchups using team stats and spread lines.")
 
-    # Static mapping of team abbreviations to logo URLs (you can expand this)
-    logo_urls = {
-        'ARI': 'https://a.espncdn.com/i/teamlogos/nfl/500/ari.png',
-        'ATL': 'https://a.espncdn.com/i/teamlogos/nfl/500/atl.png',
-        'BAL': 'https://a.espncdn.com/i/teamlogos/nfl/500/bal.png',
-        'BUF': 'https://a.espncdn.com/i/teamlogos/nfl/500/buf.png',
-        'CAR': 'https://a.espncdn.com/i/teamlogos/nfl/500/car.png',
-        'CHI': 'https://a.espncdn.com/i/teamlogos/nfl/500/chi.png',
-        'CIN': 'https://a.espncdn.com/i/teamlogos/nfl/500/cin.png',
-        'CLE': 'https://a.espncdn.com/i/teamlogos/nfl/500/cle.png',
-        'DAL': 'https://a.espncdn.com/i/teamlogos/nfl/500/dal.png',
-        'DEN': 'https://a.espncdn.com/i/teamlogos/nfl/500/den.png',
-        'DET': 'https://a.espncdn.com/i/teamlogos/nfl/500/det.png',
-        'GB':  'https://a.espncdn.com/i/teamlogos/nfl/500/gb.png',
-        'HOU': 'https://a.espncdn.com/i/teamlogos/nfl/500/hou.png',
-        'IND': 'https://a.espncdn.com/i/teamlogos/nfl/500/ind.png',
-        'JAX': 'https://a.espncdn.com/i/teamlogos/nfl/500/jax.png',
-        'KC':  'https://a.espncdn.com/i/teamlogos/nfl/500/kc.png',
-        'LV':  'https://a.espncdn.com/i/teamlogos/nfl/500/lv.png',
-        'LAC': 'https://a.espncdn.com/i/teamlogos/nfl/500/lac.png',
-        'LAR': 'https://a.espncdn.com/i/teamlogos/nfl/500/lar.png',
-        'MIA': 'https://a.espncdn.com/i/teamlogos/nfl/500/mia.png',
-        'MIN': 'https://a.espncdn.com/i/teamlogos/nfl/500/min.png',
-        'NE':  'https://a.espncdn.com/i/teamlogos/nfl/500/ne.png',
-        'NO':  'https://a.espncdn.com/i/teamlogos/nfl/500/no.png',
-        'NYG': 'https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png',
-        'NYJ': 'https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png',
-        'PHI': 'https://a.espncdn.com/i/teamlogos/nfl/500/phi.png',
-        'PIT': 'https://a.espncdn.com/i/teamlogos/nfl/500/pit.png',
-        'SEA': 'https://a.espncdn.com/i/teamlogos/nfl/500/sea.png',
-        'SF':  'https://a.espncdn.com/i/teamlogos/nfl/500/sf.png',
-        'TB':  'https://a.espncdn.com/i/teamlogos/nfl/500/tb.png',
-        'TEN': 'https://a.espncdn.com/i/teamlogos/nfl/500/ten.png',
-        'WAS': 'https://a.espncdn.com/i/teamlogos/nfl/500/was.png'
-    }
-
     schedule_2025 = nfl.import_schedules(years=[2025])
     future_games = schedule_2025[(schedule_2025['game_type'] == 'REG') & (schedule_2025['result'].isna())]
 
@@ -189,7 +188,10 @@ with tab1:
                 st.write(row['away_team'])
             with col2:
                 st.subheader(f"{row['away_team']} @ {row['home_team']}")
-                st.image(pick_logo, width=40)
+                if pick_logo:
+                    st.image(pick_logo, width=40)
+                else:
+                    st.write("🏈")  # fallback emoji
                 st.write(f"**Recommended Pick**: {row['recommended_moneyline']}")
                 st.progress(row['confidence'])
             with col3:
